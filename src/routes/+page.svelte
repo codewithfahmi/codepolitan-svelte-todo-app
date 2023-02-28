@@ -1,3 +1,7 @@
+<script>
+    import TodoCard from "./TodoCard.svelte";
+</script>
+
 <svelte:head>
     <title>Todo App</title>
 </svelte:head>
@@ -14,24 +18,12 @@
                         <p class="card-header-title">Tasks</p>
                     </div>
                     <div class="card-content">
-                        <div class="card mb-3 has-background-primary-light">
-                            <div class="card-content">
-                                <p class="has-text-primary-dark">Belajar HTML</p>
-                            </div>
-                        </div>
-                        <div class="card mb-3 has-background-primary-light">
-                            <div class="card-content">
-                                <p class="has-text-primary-dark">Belajar JS</p>
-                            </div>
-                        </div>
-                        <div class="card mb-3 has-background-primary-light">
-                            <div class="card-content">
-                                <p class="has-text-primary-dark">Belajar Svelte</p>
-                            </div>
-                        </div>
+                        <TodoCard content={"Belajar HTML"} />
+                        <TodoCard content={"Belajar JS"} />
+                        <TodoCard content={"Belajar Svelte"} />
                     </div>
                 </div>
             </div>
         </div>
-    </main>   
+    </main>
 </div>
