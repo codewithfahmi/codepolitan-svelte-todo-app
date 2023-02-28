@@ -14,7 +14,21 @@
                         <p class="card-header-title">Tasks</p>
                     </div>
                     <div class="card-content">
-
+                        <div class="card mb-3 has-background-primary-light">
+                            <div class="card-content">
+                                <p class="has-text-primary-dark">Belajar HTML</p>
+                            </div>
+                        </div>
+                        <div class="card mb-3 has-background-primary-light">
+                            <div class="card-content">
+                                <p class="has-text-primary-dark">Belajar JS</p>
+                            </div>
+                        </div>
+                        <div class="card mb-3 has-background-primary-light">
+                            <div class="card-content">
+                                <p class="has-text-primary-dark">Belajar Svelte</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
