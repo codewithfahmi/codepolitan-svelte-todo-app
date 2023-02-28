@@ -1,5 +1,11 @@
 <script>
     import TodoCard from "./TodoCard.svelte";
+    const cards = [
+        'Belajar HTML',
+        'Belajar JS',
+        'Belajar Programming',
+        'Belajar Svelte'
+    ]
 </script>
 
 <svelte:head>
@@ -18,9 +24,9 @@
                         <p class="card-header-title">Tasks</p>
                     </div>
                     <div class="card-content">
-                        <TodoCard content={"Belajar HTML"} />
-                        <TodoCard content={"Belajar JS"} />
-                        <TodoCard content={"Belajar Svelte"} />
+                        {#each cards as card}
+                            <TodoCard content={card} />
+                        {/each}
                     </div>
                 </div>
             </div>
