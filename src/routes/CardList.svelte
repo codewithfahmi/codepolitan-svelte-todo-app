@@ -17,7 +17,7 @@
         </div>
         <div class="card-content">
             {#each cards as card}
-                <TodoCard content={card.todo} />
+                <TodoCard content={card.todo} listName={listName}/>
             {/each}
             <section role="form">
                 <div class="field">
