@@ -1,6 +1,6 @@
 <script>
     import TodoCard from "./TodoCard.svelte";
-    const cards = [
+    let cards = [
         {
             todo: "Belajar HTML",
             list: "tasks",
@@ -16,6 +16,7 @@
     ];
 
     $: todo = "";
+    const handleAddCard = () => (cards = [...cards, { todo, list: "tasks" }]);
 </script>
 
 <svelte:head>
@@ -37,15 +38,23 @@
                         {#each cards as card}
                             <TodoCard content={card.todo} />
                         {/each}
-                        <p>{todo}</p>
                         <div class="field">
                             <div class="control">
-                                <input type="text" class="input is-primary" bind:value={todo}>
+                                <input
+                                    type="text"
+                                    class="input is-primary"
+                                    bind:value={todo}
+                                />
                             </div>
                         </div>
                         <div class="field">
                             <div class="control">
-                                <button class="button is-primary">Add Card</button>
+                                <button
+                                    on:click={() => {
+                                        handleAddCard(), (todo = "");
+                                    }}
+                                    class="button is-primary">Add Card</button
+                                >
                             </div>
                         </div>
                     </div>
