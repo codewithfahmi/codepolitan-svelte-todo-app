@@ -14,6 +14,8 @@
             list: "tasks",
         },
     ];
+
+    $: todo = "";
 </script>
 
 <svelte:head>
@@ -35,6 +37,17 @@
                         {#each cards as card}
                             <TodoCard content={card.todo} />
                         {/each}
+                        <p>{todo}</p>
+                        <div class="field">
+                            <div class="control">
+                                <input type="text" class="input is-primary" bind:value={todo}>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <button class="button is-primary">Add Card</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
