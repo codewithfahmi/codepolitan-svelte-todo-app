@@ -1,11 +1,13 @@
 <script>
+    import { createEventDispatcher } from "svelte";
+    import TodoCard from "./TodoCard.svelte";
+
     export let cards;
     export let listName;
 
-    import TodoCard from "./TodoCard.svelte";
-
     $: todo = "";
-    const handleAddCard = () => (cards = [...cards, { todo, list: "tasks" }]);
+    const dispatch = createEventDispatcher();
+    const handleAddCard = () => dispatch("addCard", { todo, listName });
 </script>
 
 <div class="column is-4">
