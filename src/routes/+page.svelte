@@ -21,17 +21,43 @@
 
     const handleEventDeleteCard = (event) => {
         const data = event.detail;
-        if(data.listName === 'Tasks'){
+        if (data.listName === "Tasks") {
             taskCards.splice(data.index, 1);
             taskCards = taskCards;
-        }else if(data.listName === 'In Progress'){
+        } else if (data.listName === "In Progress") {
             inProgressCards.splice(data.index, 1);
             inProgressCards = inProgressCards;
-        }else{
+        } else {
             doneCards.splice(data.index, 1);
             doneCards = doneCards;
         }
-    }
+    };
+
+    const handleEventMoveRight = (event) => {
+        const data = event.detail;
+        if (data.listName === "Tasks") {
+            const cardToMove = taskCards.splice(data.index, 1);
+            taskCards = taskCards;
+            inProgressCards = [...inProgressCards, cardToMove[0]];
+        } else {
+            const cardToMove = inProgressCards.splice(data.index, 1);
+            inProgressCards = inProgressCards;
+            doneCards = [...doneCards, cardToMove[0]];
+        }
+    };
+
+    const handleEventMoveLeft = (event) => {
+        const data = event.detail;
+        if (data.listName === "In Progress") {
+            const moveToCard = inProgressCards.splice(data.index, 1);
+            inProgressCards = inProgressCards;
+            taskCards = [...taskCards, moveToCard[0]];
+        } else {
+            const moveToCard = doneCards.splice(data.index, 1);
+            doneCards = doneCards;
+            inProgressCards = [...inProgressCards, moveToCard[0]];
+        }
+    };
 </script>
 
 <svelte:head>
@@ -49,18 +75,22 @@
                 listName={"Tasks"}
                 on:addCard={handleEventAddCard}
                 on:deleteCard={handleEventDeleteCard}
+                on:moveRight={handleEventMoveRight}
             />
             <CardList
                 cards={inProgressCards}
                 listName={"In Progress"}
                 on:addCard={handleEventAddCard}
                 on:deleteCard={handleEventDeleteCard}
+                on:moveRight={handleEventMoveRight}
+                on:moveLeft={handleEventMoveLeft}
             />
             <CardList
                 cards={doneCards}
                 listName={"Done"}
                 on:addCard={handleEventAddCard}
                 on:deleteCard={handleEventDeleteCard}
+                on:moveLeft={handleEventMoveLeft}
             />
         </div>
     </main>

@@ -8,12 +8,23 @@
     $: todo = "";
 
     const dispatch = createEventDispatcher();
-    
+
     const handleAddCard = () => dispatch("addCard", { todo, listName });
+    
     const handleDeleteCard = (event) => {
         const data = event.detail;
-        dispatch('deleteCard', {index: data.index, listName})
-    }
+        dispatch("deleteCard", { index: data.index, listName });
+    };
+
+    const handleMoveRight = (event) => {
+        const data = event.detail;
+        dispatch("moveRight", { index: data.index, listName });
+    };
+
+    const handleMoveLeft = (event) => {
+        const data = event.detail;
+        dispatch("moveLeft", { index: data.index, listName });
+    };
 </script>
 
 <div class="column is-4">
@@ -23,7 +34,14 @@
         </div>
         <div class="card-content">
             {#each cards as card, index}
-                <TodoCard content={card.todo} {listName} {index} on:deleteCard={handleDeleteCard} />
+                <TodoCard
+                    content={card.todo}
+                    {listName}
+                    {index}
+                    on:deleteCard={handleDeleteCard}
+                    on:moveRight={handleMoveRight}
+                    on:moveLeft={handleMoveLeft}
+                />
             {/each}
             <section role="form">
                 <div class="field">
