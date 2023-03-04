@@ -6,8 +6,14 @@
     export let listName;
 
     $: todo = "";
+
     const dispatch = createEventDispatcher();
+    
     const handleAddCard = () => dispatch("addCard", { todo, listName });
+    const handleDeleteCard = (event) => {
+        const data = event.detail;
+        dispatch('deleteCard', {index: data.index, listName})
+    }
 </script>
 
 <div class="column is-4">
@@ -16,8 +22,8 @@
             <p class="card-header-title">{listName}</p>
         </div>
         <div class="card-content">
-            {#each cards as card}
-                <TodoCard content={card.todo} listName={listName}/>
+            {#each cards as card, index}
+                <TodoCard content={card.todo} {listName} {index} on:deleteCard={handleDeleteCard} />
             {/each}
             <section role="form">
                 <div class="field">

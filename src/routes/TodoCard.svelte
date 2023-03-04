@@ -1,6 +1,11 @@
 <script>
-    export let content;
-    export let listName;
+    import { createEventDispatcher } from "svelte";
+    const dispatch = createEventDispatcher();
+
+    export let content, listName, index;
+    const handleDeleteCard = () => {
+        dispatch("deleteCard", { index });
+    };
 </script>
 
 <div class="card mb-3 has-background-primary-light">
@@ -13,11 +18,13 @@
                     </span>
                 </div>
             {/if}
-            <div class={`column ${listName === "In Progress" ? "is-8" : "is-9"}`}>
+            <div
+                class={`column ${listName === "In Progress" ? "is-8" : "is-9"}`}
+            >
                 <p>{content}</p>
             </div>
-            <div class="column is-1">
-                <span class="icon has-text-danger">
+            <div class="column is-1" on:click={handleDeleteCard}>
+                <span class="icon has-text-danger" >
                     <i class="fa-solid fa-trash" />
                 </span>
             </div>

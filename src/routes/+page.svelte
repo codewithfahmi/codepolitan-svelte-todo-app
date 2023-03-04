@@ -5,7 +5,6 @@
     let doneCards = [];
 
     const handleEventAddCard = (event) => {
-        console.log(event);
         const data = event.detail;
         switch (data.listName) {
             case "Tasks":
@@ -19,6 +18,20 @@
                 break;
         }
     };
+
+    const handleEventDeleteCard = (event) => {
+        const data = event.detail;
+        if(data.listName === 'Tasks'){
+            taskCards.splice(data.index, 1);
+            taskCards = taskCards;
+        }else if(data.listName === 'In Progress'){
+            inProgressCards.splice(data.index, 1);
+            inProgressCards = inProgressCards;
+        }else{
+            doneCards.splice(data.index, 1);
+            doneCards = doneCards;
+        }
+    }
 </script>
 
 <svelte:head>
@@ -35,16 +48,19 @@
                 cards={taskCards}
                 listName={"Tasks"}
                 on:addCard={handleEventAddCard}
+                on:deleteCard={handleEventDeleteCard}
             />
             <CardList
                 cards={inProgressCards}
                 listName={"In Progress"}
                 on:addCard={handleEventAddCard}
+                on:deleteCard={handleEventDeleteCard}
             />
             <CardList
                 cards={doneCards}
                 listName={"Done"}
                 on:addCard={handleEventAddCard}
+                on:deleteCard={handleEventDeleteCard}
             />
         </div>
     </main>
